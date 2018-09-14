@@ -12,4 +12,4 @@ generate: check-env
 	cd $(env) ; \
 	unset OS_USERNAME ; \
 	unset OS_PASSWORD ; \
-	RECIPIENT=sysadmin@callysto.ca dehydrated -c --accept-terms -f 'config' -k './hook.sh'
+	dehydrated -c --accept-terms -f 'config' -k './hook.sh'

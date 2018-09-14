@@ -4,12 +4,12 @@ resource "random_pet" "name" {
 
 # These represent settings to tune the hub you're creating
 locals {
-  name = "${random_pet.name.id}.callysto.farm"
+  name = "${random_pet.name.id}.jupyter.cybera.ca"
 
-  image_name   = "callysto-hub"
+  image_name   = "cybera-jupyterhub"
   network_name = "default"
   public_key   = "${file("../../keys/id_rsa.pub")}"
-  zone_id      = "fb1e23f2-5eb9-43e9-aa37-60a5bd7c2595"
+  zone_id      = "9e2fab89-1e01-4cb1-af20-1b13bbe6fc72"
 
   # Create a new floating IP or use an existing one.
   # If set to false and "", then IPv6 will be used.

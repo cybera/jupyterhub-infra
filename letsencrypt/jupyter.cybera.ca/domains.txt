@@ -1,0 +1,1 @@
+*.jupyter.cybera.ca > star_jupyter_cybera_ca

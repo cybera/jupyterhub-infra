@@ -1,4 +1,3 @@
-export PATH := $(TOP)/bin/$(UNAME):/bin:/usr/bin
 SHELL := /bin/bash
 UNAME := $(shell uname)
 TOP := $(shell pwd)
