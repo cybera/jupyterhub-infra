@@ -1,15 +1,18 @@
+variable "CALLYSTO_DOMAINNAME" {}
+variable "CALLYSTO_ZONE_ID" {}
+
 resource "random_pet" "name" {
   length = 2
 }
 
 # These represent settings to tune the hub you're creating
 locals {
-  name = "${random_pet.name.id}.jupyter.cybera.ca"
+  name = "${random_pet.name.id}.${var.CALLYSTO_DOMAINNAME}"
 
   image_name   = "cybera-jupyterhub"
   network_name = "default"
   public_key   = "${file("../../keys/id_rsa.pub")}"
-  zone_id      = "9e2fab89-1e01-4cb1-af20-1b13bbe6fc72"
+  zone_id      = "${var.CALLYSTO_ZONE_ID}"
 
   # Create a new floating IP or use an existing one.
   # If set to false and "", then IPv6 will be used.
@@ -132,5 +135,7 @@ resource "ansible_host" "hub" {
     ansible_user            = "ptty2u"
     ansible_host            = "${local.hub_ip}"
     ansible_ssh_common_args = "-C -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+    zfs_disk_1              = "${module.hub.vol_id_1}"
+    zfs_disk_2              = "${module.hub.vol_id_2}"
   }
 }
