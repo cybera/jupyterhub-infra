@@ -1,5 +1,6 @@
-variable "CALLYSTO_DOMAINNAME" {}
-variable "CALLYSTO_ZONE_ID" {}
+variable "DEV_CALLYSTO_DOMAINNAME" {}
+
+variable "DEV_CALLYSTO_ZONE_ID" {}
 
 resource "random_pet" "name" {
   length = 2
@@ -7,12 +8,13 @@ resource "random_pet" "name" {
 
 # These represent settings to tune the hub you're creating
 locals {
-  name = "${random_pet.name.id}.${var.CALLYSTO_DOMAINNAME}"
+  # DEV_CALLYSTO_DOMAINNAME and DEV_CALLYSTO_ZONE_ID are set in env or .envrc file
+  name = "hub-dev.${var.DEV_CALLYSTO_DOMAINNAME}"
 
   image_name   = "cybera-jupyterhub"
   network_name = "default"
   public_key   = "${file("../../keys/id_rsa.pub")}"
-  zone_id      = "${var.CALLYSTO_ZONE_ID}"
+  zone_id      = "${var.DEV_CALLYSTO_ZONE_ID}"
 
   # Create a new floating IP or use an existing one.
   # If set to false and "", then IPv6 will be used.

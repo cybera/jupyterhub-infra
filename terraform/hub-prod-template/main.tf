@@ -1,11 +1,14 @@
+# PROD_CALLYSTO_DOMAINNAME is set in env or .envrc file
+variable "PROD_CALLYSTO_DOMAINNAME" {}
+
 # These represent settings to tune the hub you're creating
 locals {
-  name = "hub.jupyter.cybera.ca"
+  name = "hub.${var.PROD_CALLYSTO_DOMAINNAME}"
 
   image_name   = "cybera-jupyterhub"
   network_name = "default"
   public_key   = "${file("../../keys/id_rsa.pub")}"
-  zone_id      = "9e2fab89-1e01-4cb1-af20-1b13bbe6fc72"
+  zone_id      = "${var.PROD_CALLYSTO_ZONE_ID}"
 
   create_floating_ip = false
   existing_floating_ip = ""
