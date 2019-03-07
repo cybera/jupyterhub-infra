@@ -192,3 +192,8 @@
       tags: ["ssh", "rrsync", "backup"]
       include_role:
         name: rrsync
+
+    - name: Install rstudio
+      tags: ["rstudio"]
+      include_role:
+        name: rstudio
