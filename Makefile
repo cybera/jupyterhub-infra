@@ -51,10 +51,10 @@ ifndef HOST
 endif
 
 check-module:
-ifdef MODULE
-export _MODULE = $(MODULE)
-else
+ifndef MODULE
 	$(error MODULE is not defined)
+else
+export _MODULE = $(MODULE)
 endif
 
 check-args:
@@ -204,7 +204,7 @@ ansible/hosts/playbook: check-env check-playbook
 
 HELP: Runs $PLAYBOOK on $GROUP in check-mode in $ENV
 ansible/playbook/check: check-env check-playbook check-group
-	@cd $(ANSIBLE_PATH) ; \
+	cd $(ANSIBLE_PATH) ; \
 	$(PLAYBOOK_CMD) --check --diff --limit $(GROUP) $(_PLAYBOOK)
 
 HELP: Runs $PLAYBOOK on $GROUP for reals in $ENV
@@ -268,9 +268,10 @@ letsencrypt/generate: check-env
 	unset OS_PASSWORD ; \
 	if [[ ${ENV} =~ 'dev' ]]; then \
 	  echo "*.${DEV_CALLYSTO_DOMAINNAME} > ${DEV_CALLYSTO_SSL_DIR_NAME}" > domains.txt ; \
-	  RECIPIENT=${ADMIN_EMAIL} ${DEHYDRATED_PATH} -c --accept-terms -f 'config' -k './hook.sh' ; \
+	  ${DEHYDRATED_PATH} -c --accept-terms -f 'config' -k './hook.sh' ; \
 	else \
-	  RECIPIENT=sysadmin@callysto.ca ${DEHYDRATED_PATH} -c --accept-terms -f 'config' -k './hook.sh' ; \
+	  echo "*.${PROD_CALLYSTO_DOMAINNAME} > ${PROD_CALLYSTO_SSL_DIR_NAME}" > domains.txt ; \
+	  ${DEHYDRATED_PATH} -c --accept-terms -f 'config' -k './hook.sh' ; \
 	fi
 
 # SSH tasks

@@ -10,7 +10,10 @@ locals {
   create_floating_ip = false
   existing_floating_ip = "162.246.156.157"
 
-  existing_volumes = []
+  existing_volumes = [
+    "8961b37d-560e-458c-94bd-458fe35a827e",
+    "4b138951-59fb-4461-b23e-28a575af2bcd",
+  ]
 }
 
 data "openstack_images_image_v2" "hub" {
