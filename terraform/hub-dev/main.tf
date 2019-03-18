@@ -9,7 +9,7 @@ resource "random_pet" "name" {
 # These represent settings to tune the hub you're creating
 locals {
   # DEV_CALLYSTO_DOMAINNAME and DEV_CALLYSTO_ZONE_ID are set in env or .envrc file
-  name = "hub-dev.${var.DEV_CALLYSTO_DOMAINNAME}"
+  name = "${random_pet.name.id}.${var.DEV_CALLYSTO_DOMAINNAME}"
 
   image_name   = "cybera-jupyterhub"
   network_name = "default"
