@@ -1,0 +1,7 @@
+[Unit]
+Description=Rclone error notifier
+StopWhenUnneeded=true
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c '/usr/bin/systemctl status rclone@%i | /usr/bin/mailx -Ssendwait -s "[%H rclone@%i] Fail" root'

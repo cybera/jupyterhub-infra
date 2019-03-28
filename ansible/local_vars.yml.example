@@ -142,6 +142,28 @@ ssp_idp_multi_saml_key:
 #rrsync_public_key: 'some public key'
 #rrsync_public_key_path: /root/.ssh/some_key.pub
 
+# rclone
+#rclone_enable: false
+#rclone_version: "1.46"
+#rclone_backup_timer_cron: "03:00:00"
+#rclone_config:
+#  RACSwift:
+#    type: "swift"
+#    user: "username"
+#    key: "password"
+#    auth: "https://keystone-yyc.cloud.cybera.ca:5000/v2.0"
+#    tenant: "project"
+#    region: "Calgary"
+#  crypt:
+#    type: "crypt"
+#    remote: "RACSwift:RACSwift"
+#    filename_encryption: "obfuscate"
+#    directory_name_encryption: true
+#    password: "encryption_key"
+#rclone_backups:
+#  - destination: "crypt"
+#    folder: "/tank/home"
+
 # Infrastructure / Clavius backup
 #backup_base_directory: "~/work/callysto-infra"
 #backup_dest_directory: "~/work/backup"

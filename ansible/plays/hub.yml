@@ -200,6 +200,12 @@
       include_role:
         name: rrsync
 
+    - name: Manage rclone
+      tags: ["rclone", "backup"]
+      include_role:
+        name: rclone
+      when: rclone_enable is defined and rclone_enable == true
+
     - name: Install rstudio
       tags: ["rstudio"]
       include_role:

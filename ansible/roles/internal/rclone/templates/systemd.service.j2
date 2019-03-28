@@ -1,0 +1,17 @@
+[Unit]
+Description=Backup on %I with rclone
+ConditionPathExists=%I/{{ rclone_backup_config }}
+ConditionFileIsExecutable={{ rclone_binary }}
+ConditionACPower=true
+OnFailure={{ rclone_notify_service_name }}@%i.service
+PartOf={{ rclone_service_name }}.target
+
+[Service]
+Type=forking
+User={{ rclone_user }}
+EnvironmentFile=-%I/{{ rclone_backup_config }}
+WorkingDirectory=%I
+ExecStart={{ rclone_binary }} -v --config=${RCLONE_CONFIG} ${RCLONE_OPER} %I ${RCLONE_DEST}: $RCLONE_ARGS
+
+[Install]
+WantedBy={{ rclone_service_name }}.target
