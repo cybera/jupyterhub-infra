@@ -16,4 +16,6 @@ ansible/inventory
 letsencrypt/*/accounts
 letsencrypt/*/certs
 letsencrypt/*/chains
+terraform/hub-*
+terraform/prod-*
 .envrc

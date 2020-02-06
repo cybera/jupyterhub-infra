@@ -30,7 +30,7 @@ deploy_challenge() {
     source ${OPENRC_PATH}
     openstack recordset delete ${DOMAIN}. _acme-challenge.${DOMAIN}. > /dev/null 2>&1;
     openstack recordset create ${DOMAIN}. _acme-challenge.${DOMAIN}. --type TXT --record \"${TOKEN_VALUE}\";
-    sleep 10
+    sleep 30
 }
 
 clean_challenge() {

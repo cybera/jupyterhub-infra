@@ -60,8 +60,8 @@ jupyterhub_spawner: dockerspawner
 
 # The docker image to use for notebooks
 # If using swift, change this to callysto-swift
-jupyterhub_docker_image: 'docker.io/callysto/pims-r'
-jupyterhub_docker_container: 'docker.io/callysto/pims-r:latest'
+jupyterhub_docker_image: 'docker.io/cybera/cybera-jhub'
+jupyterhub_docker_container: 'docker.io/cybera/cybera-jhub:latest'
 
 # Set an announcement on the user's control panel
 #jupyterhub_announcement: 'Some Text'
@@ -88,12 +88,10 @@ disable_package_update: False
 #ssp_develop: True
 
 # SimpleSAMLphp Theme
-# by default, the `default` theme will be used.
-# uncomment below to use the callysto theme
-#ssp_theme_name: 'callysto:callysto'
-#ssp_theme_repo: 'https://github.com/callysto/callysto-ssp-theme'
-#ssp_theme_version: 'master'
-#ssp_theme_dir: "{{ ssp_dir }}/modules/callysto"
+ssp_theme_name: 'callysto:callysto'
+ssp_theme_repo: 'https://github.com/cybera/callysto-ssp-theme'
+ssp_theme_version: 'master'
+ssp_theme_dir: "{{ ssp_dir }}/modules/callysto"
 
 ssp_idp_multi_sources:
   - type: google
@@ -172,3 +170,6 @@ ssp_idp_multi_saml_key:
 #  - "*.tfstate"
 #  - "id_rsa*"
 #  - "letsencrypt"
+
+callysto_hub_landing_page_repo: "https://github.com/cybera/hub-landing-page"
+callysto_html_domain: "jupyter.cybera.ca"
